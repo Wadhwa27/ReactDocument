@@ -1,17 +1,30 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+interface LoginModel {
+  email: String;
+  password: String;
+}
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  function handleChange(identifier: string, value: string) {
-    if (identifier === "email") {
-      setEmail(value);
-    } else {
-      setPassword(value);
+  const [data, setData] = useState<LoginModel>({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const id = event.target.id;
+    const value = event.target.value;
+    setData({
+      ...data,
+      [id]: value,
+    });
+  }
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (data.email == "" || data.password == "") {
+      alert("Please fill the form");
+      return;
     }
   }
-  const validatePassword = password.trim().length > 6;
-  const validateEmail = email.includes("@");
 
   function handleLogin() {
     if (password.trim().length < 6) {
@@ -40,44 +53,52 @@ export default function Login() {
       {/* Login Card */}
       <div className="w-full max-w-[280px] sm:max-w-[320px] bg-white shadow-xl rounded-xl z-10">
         <div className="h-2 bg-[#a372e8] rounded-t-md"></div>
-        <div className="px-6 py-6">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-4">
-            Login to your account
-          </h2>
+        <form onSubmit={handleSubmit}>
+          <div className="px-6 py-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-4">
+              Login to your account
+            </h2>
+            <label className="block text-gray-700 text-sm font-medium">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              className="border w-full h-10 px-3 mt-2 mb-4 text-sm text-gray-800 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+              value={data.email}
+              onChange={handleChange}
+            />
 
-          <label className="block text-gray-700 text-sm font-medium">
-            Username or Email
-          </label>
-          <input
-            type="text"
-            placeholder="Email"
-            className="border w-full h-10 px-3 mt-2 mb-4 text-sm text-gray-800 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
-          />
-
-          <label className="block text-gray-700 text-sm font-medium">
-            Password
-          </label>
-          <input
-            type="password"
-            placeholder="Password"
-            className="border w-full h-10 px-3 mt-2 text-sm text-gray-800 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
-          />
-
-          <div className="flex justify-between items-center mt-4">
-            <button
-              type="submit"
-              className="bg-[#4f3279] text-white py-1.5 px-4 text-sm rounded-md hover:bg-[#50376d] font-medium transition"
-            >
-              Login
-            </button>
-            <a
-              href="#"
-              className="text-sm text-[#4f3279] hover:text-[#3a0e6e] underline transition"
-            >
-              Forgot password?
-            </a>
+            <label className="block text-gray-700 text-sm font-medium">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              className="border w-full h-10 px-3 mt-2 text-sm text-gray-800 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+              value={data.password}
+              onChange={handleChange}
+            />
+            <div className="flex justify-between items-center mt-4">
+              {message && <p>{message}</p>}
+              <button
+                type="submit"
+                className="bg-[#4f3279] text-white py-1.5 px-4 text-sm rounded-md hover:bg-[#50376d] font-medium transition"
+              >
+                Sign In
+              </button>
+              <a
+                href="#"
+                className="text-sm text-[#4f3279] hover:text-[#3a0e6e] underline transition"
+              >
+                Login
+                <Link to="/"> Sign In </Link>
+              </a>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

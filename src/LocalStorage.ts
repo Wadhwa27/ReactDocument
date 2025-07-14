@@ -18,4 +18,16 @@ const users = JSON.parse(userStr) as userData[];
 const findUser = users.find(data => data.email == email)
 return findUser != null
 }
+
+function getUser (email : String , password : String){
+const userStr = localStorage.getItem(REGISTERED_USERS) || null;
+if (userStr == null){
+  return false;
+}
+const users = JSON.parse(userStr) as userData[];
+const findUser = users.find(data => data.email == email)
+return findUser != null
+
+}
+
 export {addNewUser , isNewUserExist};
