@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getUser, updateActiveUser } from "../LocalStorage";
+
 interface LoginModel {
   email: String;
   password: String;
@@ -9,7 +11,7 @@ export default function Login() {
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const id = event.target.id;
     const value = event.target.value;
@@ -24,6 +26,13 @@ export default function Login() {
       alert("Please fill the form");
       return;
     }
+    const user = getUser(data.email, data.password);
+    if (user == null) {
+      alert("Email  or Password is not correct");
+      return;
+    }
+    updateActiveUser(user);
+    navigate("/");
   }
 
   function handleLogin() {
@@ -94,7 +103,7 @@ export default function Login() {
                 className="text-sm text-[#4f3279] hover:text-[#3a0e6e] underline transition"
               >
                 Login
-                <Link to="/"> Sign In </Link>
+                <Link to="/signup"> Sign In </Link>
               </a>
             </div>
           </div>

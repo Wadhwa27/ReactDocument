@@ -1,8 +1,10 @@
 const REGISTERED_USERS = "registered_users";
+const ACTIVE_USER = "active_user";
 export interface userData {
   email: string;
   password: string;
 }
+
 function  addNewUser (user :userData) {
  const userStr = localStorage.getItem(REGISTERED_USERS )|| "[]"
  const users = JSON.parse(userStr) as userData[];
@@ -25,9 +27,21 @@ if (userStr == null){
   return false;
 }
 const users = JSON.parse(userStr) as userData[];
-const findUser = users.find(data => data.email == email)
-return findUser != null
+const findUser = users.find(data => data.email == email && data.password == password)
+return findUser
 
 }
-
-export {addNewUser , isNewUserExist};
+const updateActiveUser = (user : userData) =>{
+localStorage.setItem(ACTIVE_USER , JSON.stringify(user))
+}
+const getActiveUser = () =>{
+ const activeUser = localStorage.getItem(ACTIVE_USER ) || null;
+if (activeUser == null){
+  return null;
+}
+return JSON.parse(activeUser)
+}
+const deleteActiveUser = () =>{
+  localStorage.removeItem(ACTIVE_USER)
+}
+export {addNewUser , isNewUserExist , getUser , getActiveUser ,updateActiveUser , deleteActiveUser};
