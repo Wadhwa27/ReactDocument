@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUser, updateActiveUser } from "../LocalStorage";
 
 interface LoginModel {
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 }
 export default function Login() {
   const [data, setData] = useState<LoginModel>({
@@ -31,18 +31,10 @@ export default function Login() {
       alert("Email  or Password is not correct");
       return;
     }
-    updateActiveUser(user);
+    updateActiveUser(data);
     navigate("/");
   }
 
-  function handleLogin() {
-    if (password.trim().length < 6) {
-      alert("Please enter a valid password");
-    }
-    if (!email.includes("@")) {
-      alert("Please enter a valid email");
-    }
-  }
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-purple-950 to-indigo-950 px-4 py-10">
       {/* Curved SVG Top */}
@@ -91,20 +83,19 @@ export default function Login() {
               onChange={handleChange}
             />
             <div className="flex justify-between items-center mt-4">
-              {message && <p>{message}</p>}
               <button
                 type="submit"
                 className="bg-[#4f3279] text-white py-1.5 px-4 text-sm rounded-md hover:bg-[#50376d] font-medium transition"
               >
-                Sign In
+                Login
               </button>
-              <a
-                href="#"
+
+              <Link
+                to="/signup"
                 className="text-sm text-[#4f3279] hover:text-[#3a0e6e] underline transition"
               >
-                Login
-                <Link to="/signup"> Sign In </Link>
-              </a>
+                Register
+              </Link>
             </div>
           </div>
         </form>

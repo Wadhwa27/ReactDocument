@@ -12,20 +12,14 @@ function  addNewUser (user :userData) {
   localStorage.setItem(REGISTERED_USERS , JSON.stringify(users))
 }
 function isNewUserExist (email : String) : boolean{
-const userStr = localStorage.getItem(REGISTERED_USERS) || null;
-if (userStr == null){
-  return false;
-}
+const userStr = localStorage.getItem(REGISTERED_USERS) || "[]";
 const users = JSON.parse(userStr) as userData[];
 const findUser = users.find(data => data.email == email)
 return findUser != null
 }
 
 function getUser (email : String , password : String){
-const userStr = localStorage.getItem(REGISTERED_USERS) || null;
-if (userStr == null){
-  return false;
-}
+const userStr = localStorage.getItem(REGISTERED_USERS) || "[]";
 const users = JSON.parse(userStr) as userData[];
 const findUser = users.find(data => data.email == email && data.password == password)
 return findUser
@@ -39,7 +33,8 @@ const getActiveUser = () =>{
 if (activeUser == null){
   return null;
 }
-return JSON.parse(activeUser)
+const ActiveUser = JSON.parse(activeUser) as userData
+return ActiveUser
 }
 const deleteActiveUser = () =>{
   localStorage.removeItem(ACTIVE_USER)

@@ -1,4 +1,4 @@
-import reactLogo from "./assets/react.svg";
+import reactLogo from "../assets/react.svg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,10 +11,9 @@ export default function Home() {
   const navigate = useNavigate();
   useEffect(() => {
     const data = getActiveUser();
-    if (data == null) {
-      navigate("/login");
+    if (data != null) {
+      setActiveUser(data);
     }
-    setActiveUser(data);
   }, []);
   function handleLogOut() {
     deleteActiveUser();

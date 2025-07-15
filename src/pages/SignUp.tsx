@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { type userData, addNewUser, isNewUserExist } from "../LocalStorage";
 
 export default function SignUp() {
   const [data, setData] = useState<userData>({ email: "", password: "" });
-  const [message, setMessage] = useState<String>("");
+  const [message, setMessage] = useState<string>("");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const id = event.target.id;
     const value = event.target.value;
@@ -15,6 +15,13 @@ export default function SignUp() {
       [id]: value,
     });
     setMessage("");
+  }
+
+  function resetData() {
+    setData({
+      email: "",
+      password: "",
+    });
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -36,10 +43,10 @@ export default function SignUp() {
       return;
     }
     addNewUser(data);
+    resetData();
     setMessage("User created. Click on Login");
-    // setData({ email: "", password: "" });
   }
-  console.log("email", data.email);
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-purple-950 to-indigo-950 px-4 py-10">
       {/* Curved SVG Top */}
@@ -62,7 +69,7 @@ export default function SignUp() {
         <form onSubmit={handleSubmit}>
           <div className="px-6 py-6">
             <h2 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-4">
-              Sign In
+              Register your account
             </h2>
             <label className="block text-gray-700 text-sm font-medium">
               Email
@@ -88,20 +95,17 @@ export default function SignUp() {
               onChange={handleChange}
             />
             <div className="flex justify-between items-center mt-4">
-              {message && <p>{message}</p>}
-              <button
-                type="submit"
-                className="bg-[#4f3279] text-white py-1.5 px-4 text-sm rounded-md hover:bg-[#50376d] font-medium transition"
-              >
-                Sign In
+              <button className="bg-[#4f3279] text-white py-1.5 px-4 text-sm rounded-md hover:bg-[#50376d] font-medium transition">
+                Register
               </button>
-              <a
-                href="#"
+              {message && <p>{message}</p>}
+
+              <Link
+                to="/login"
                 className="text-sm text-[#4f3279] hover:text-[#3a0e6e] underline transition"
               >
                 Login
-                <Link to="/login"> Login</Link>
-              </a>
+              </Link>
             </div>
           </div>
         </form>
