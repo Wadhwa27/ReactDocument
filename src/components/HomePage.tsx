@@ -1,4 +1,5 @@
 import ReactLogo from "../assets/react.svg";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -14,8 +15,8 @@ export default function HomePage() {
 
       {/* Glassmorphic Card */}
       <div
-        className="z-10 max-w-md w-full text-center space-y-6 p-6 md:p-10 rounded-2xl bg-gradient-to-br from-[#2c3e50]/70 via-[#3a5564]/60 to-[#4e6e7a]/70
- shadow-2xl backdrop-blur-md border border-white/10"
+        className="z-10 max-w-md w-full text-center space-y-6 p-6 md:p-10 rounded-2xl bg-gradient-to-br from-[#2c3e50]/70 via-[#23272f]/80 to-[#365767]/70
+          shadow-2xl backdrop-blur-md border border-white/10"
       >
         {/* Rotating React Logo */}
         <div className="flex justify-center">
@@ -33,12 +34,17 @@ export default function HomePage() {
 
         {/* Buttons */}
         <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <button className="px-6 py-2 bg-gradient-to-r from-cyan-300 to-blue-400 text-[#3a0e6e] font-semibold rounded-full hover:from-blue-400 hover:to-cyan-300 transition-all duration-300 hover:scale-105">
-            Register
-          </button>
-          <button className="px-6 py-2 bg-gradient-to-r from-cyan-300 to-blue-400 text-[#3a0e6e] font-semibold rounded-full hover:from-blue-400 hover:to-cyan-300 transition-all duration-300 hover:scale-105">
-            Login
-          </button>
+          <Link to="/signup" className="w-full md:w-1/2">
+            <button className="w-full py-2 bg-gradient-to-r from-cyan-300 to-blue-400 text-[#3a0e6e] font-semibold rounded-full hover:from-blue-400 hover:to-cyan-300 transition-all duration-300 hover:scale-105">
+              Register
+            </button>
+          </Link>
+
+          <Link to="/login" className="w-full md:w-1/2">
+            <button className="w-full py-2 bg-gradient-to-r from-cyan-300 to-blue-400 text-[#3a0e6e] font-semibold rounded-full hover:from-blue-400 hover:to-cyan-300 transition-all duration-300 hover:scale-105">
+              Login
+            </button>
+          </Link>
         </div>
       </div>
     </div>
