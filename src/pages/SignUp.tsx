@@ -113,7 +113,7 @@ export default function SignUp() {
             <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
               <button
                 type="submit"
-                className="bg-gradient-to-r from-cyan-300 to-blue-400 text-[#3a0e6e] text-[#3a0e6e] py-2 px-6 text-sm rounded-md hover:bg-[#50376d] 
+                className="bg-gradient-to-r from-cyan-300 to-blue-400  text-[#3a0e6e] py-2 px-6 text-sm rounded-full hover:bg-[#50376d] 
         font-medium transition w-full sm:w-auto"
               >
                 Register
@@ -127,7 +127,7 @@ export default function SignUp() {
 
               <Link
                 to="/login"
-                className="text-sm text-[#b99cfb] hover:text-[#d2c2fd] underline transition text-center sm:text-left"
+                className="text-sm text-white hover:text-cyan-400 underline transition text-center sm:text-left"
               >
                 Already have an account? Login
               </Link>
@@ -136,69 +136,5 @@ export default function SignUp() {
         </form>
       </div>
     </div>
-
-    // <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-purple-950 to-indigo-950 px-4 py-10">
-    //   {/* Curved SVG Top */}
-    //   <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
-    //     <svg
-    //       viewBox="0 0 500 150"
-    //       preserveAspectRatio="none"
-    //       className="w-full h-24"
-    //     >
-    //       <path
-    //         d="M0.00,49.98 C150.00,150.00 350.00,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-    //         style={{ stroke: "none", fill: "#4c1d95" }}
-    //       ></path>
-    //     </svg>
-    //   </div>
-
-    //   {/* Login Card */}
-    //   <div className="w-full max-w-[280px] sm:max-w-[320px] bg-white shadow-xl rounded-xl z-10">
-    //     <div className="h-2 bg-[#a372e8] rounded-t-md"></div>
-    //     <form onSubmit={handleSubmit}>
-    //       <div className="px-6 py-6">
-    //         <h2 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-4">
-    //           Register your account
-    //         </h2>
-    //         <label className="block text-gray-700 text-sm font-medium">
-    //           Email
-    //         </label>
-    //         <input
-    //           id="email"
-    //           type="email"
-    //           placeholder="Email"
-    //           className="border w-full h-10 px-3 mt-2 mb-4 text-sm text-gray-800 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
-    //           value={data.email}
-    //           onChange={handleChange}
-    //         />
-
-    //         <label className="block text-gray-700 text-sm font-medium">
-    //           Password
-    //         </label>
-    //         <input
-    //           id="password"
-    //           type="password"
-    //           placeholder="Password"
-    //           className="border w-full h-10 px-3 mt-2 text-sm text-gray-800 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
-    //           value={data.password}
-    //           onChange={handleChange}
-    //         />
-    //         <div className="flex justify-between items-center mt-4">
-    //           <button className="bg-[#4f3279] text-white py-1.5 px-4 text-sm rounded-md hover:bg-[#50376d] font-medium transition">
-    //             Register
-    //           </button>
-    //           {message && <p>{message}</p>}
-
-    //           <Link
-    //             to="/login"
-    //             className="text-sm text-[#4f3279] hover:text-[#3a0e6e] underline transition"
-    //           >
-    //             Login
-    //           </Link>
-    //         </div>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
   );
 }
