@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { type userData, addNewUser, isNewUserExist } from "../LocalStorage";
+import Dialog from "../components/Dialog";
 
 export default function SignUp() {
   const [data, setData] = useState<userData>({ email: "", password: "" });
   const [message, setMessage] = useState<string>("");
+  const dialog = useRef<{ open: () => void; close: () => void } | null>(null);
 
   // const navigate = useNavigate();
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -28,18 +30,22 @@ export default function SignUp() {
     event.preventDefault();
     if (data.password == "" || data.email == "") {
       setMessage("Please fill the form ");
+      dialog.current?.open();
       return;
     }
     if (data.password.trim().length < 6) {
       setMessage("Please enter a valid password of minimum length 6");
+      dialog.current?.open();
       return;
     }
     if (!data.email.includes("@")) {
       setMessage("Please enter a valid email");
+      dialog.current?.open();
       return;
     }
     if (isNewUserExist(data.email)) {
       setMessage("User already exists");
+      dialog.current?.open();
       return;
     }
     addNewUser(data);
@@ -134,6 +140,7 @@ export default function SignUp() {
             </div>
           </div>
         </form>
+        <Dialog message={message} ref={dialog} />
       </div>
     </div>
   );
