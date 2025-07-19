@@ -1,33 +1,61 @@
-import { useRef, useImperativeHandle } from "react";
-interface dialogType {
+import { useRef, forwardRef, useImperativeHandle } from "react";
+type DialogProp = {
   message: string;
-  ref: React.RefObject<{ open: () => void; close: () => void } | null>;
-}
-export default function Dialog({ message, ref }: dialogType) {
+};
+export type DialogHandle = {
+  open: () => void;
+  close: () => void;
+};
+
+const Dialog = forwardRef<DialogHandle, DialogProp>(({ message }, ref) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   useImperativeHandle(ref, () => ({
     open: () => {
       dialogRef.current?.showModal();
+      // document.body.classList.add("dialog-open");
     },
     close: () => {
       dialogRef.current?.close();
+      // document.body.classList.remove("dialog-open");
     },
   }));
+  function handleClose() {
+    // document.body.classList.remove("dialog-open");
+  }
   return (
     <dialog
       ref={dialogRef}
-      className="z-10 w-full max-w-md md:max-w-lg text-center space-y-6 p-6 md:p-10 
-      rounded-2xl bg-gradient-to-br from-[#a372e8]/70 via-[#65bad6]/80 to-[#3a0e6e]/70 
-      shadow-2xl backdrop-blur-md border border-white/10 mx-auto text-white"
+      onClose={handleClose}
+      className="backdrop:bg-black/30 open:flex items-center justify-center 
+        fixed top-0 left-0 w-full h-full z-50 p-0 bg-transparent border-none"
     >
-      <h2 className="text-xl md:text-2xl font-semibold">Error</h2>
-      <p className="text-sm md:text-base">{message}</p>
-      <button
-        onClick={() => dialogRef.current?.close()}
-        className="mt-4 bg-[#4f3279] text-white px-4 py-2 rounded hover:bg-[#50376d] transition"
+      <div
+        className="mx-auto w-full max-w-md md:max-w-lg 
+          text-center space-y-6 p-6 md:p-10 
+          rounded-2xl bg-[#2c3e50]/80 
+          shadow-2xl backdrop-blur-md border border-white/10 text-white"
       >
-        Close
-      </button>
+        {/* Error Icon */}
+        <div className="text-red-400 text-8xl md:text-6xl mb-4">⚠️</div>
+
+        {/* Title */}
+        <h2 className="text-2xl md:text-5xl font-semibold">Error</h2>
+
+        {/* Message */}
+        <p className="text-base md:text-lg font-medium">{message}</p>
+
+        {/* Close Button */}
+        <form method="dialog" className="mt-6">
+          <button
+            className="bg-gradient-to-r from-cyan-300 to-blue-400 text-[#3a0e6e]
+              py-2 px-4 text-sm md:text-base rounded-full hover:bg-[#50376d] 
+              font-semibold transition w-full sm:w-auto"
+          >
+            Close
+          </button>
+        </form>
+      </div>
     </dialog>
   );
-}
+});
+export default Dialog;

@@ -1,12 +1,12 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { type userData, addNewUser, isNewUserExist } from "../LocalStorage";
-import Dialog from "../components/Dialog";
+import Dialog, { type DialogHandle } from "../components/Dialog";
 
 export default function SignUp() {
   const [data, setData] = useState<userData>({ email: "", password: "" });
   const [message, setMessage] = useState<string>("");
-  const dialog = useRef<{ open: () => void; close: () => void } | null>(null);
+  const dialog = useRef<DialogHandle>(null);
 
   // const navigate = useNavigate();
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
