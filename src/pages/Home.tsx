@@ -17,7 +17,7 @@ export default function Home() {
   }, []);
   function handleLogOut() {
     deleteActiveUser();
-    navigate("/login");
+    navigate("/");
   }
 
   return (

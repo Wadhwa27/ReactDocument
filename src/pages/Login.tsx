@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUser, updateActiveUser } from "../LocalStorage";
+import Dialog, { type DialogHandle } from "../components/Dialog";
 
 interface LoginModel {
   email: string;
@@ -11,6 +12,9 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [message, setMessage] = useState<string>("");
+  const dialog = useRef<DialogHandle>(null);
+  const typeRef = useRef<"error" | "success">("error");
   const navigate = useNavigate();
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const id = event.target.id;
@@ -23,16 +27,20 @@ export default function Login() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (data.email == "" || data.password == "") {
-      alert("Please fill the form");
+      typeRef.current = "error";
+      setMessage("Please fill the form");
+      dialog.current?.open();
       return;
     }
     const user = getUser(data.email, data.password);
     if (user == null) {
-      alert("Email  or Password is not correct");
+      typeRef.current = "error";
+      setMessage("Email  or Password is not correct");
+      dialog.current?.open();
       return;
     }
     updateActiveUser(data);
-    navigate("/");
+    navigate("/home");
   }
 
   return (
@@ -72,7 +80,7 @@ export default function Login() {
                 type="email"
                 placeholder="Enter your email"
                 className="border w-full h-10 px-3 text-sm text-gray-800 placeholder-gray-400 
-    rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+    rounded-md focus:outline-none focus:ring-2 focus:from-cyan-500"
                 value={data.email}
                 onChange={handleChange}
               />
@@ -91,7 +99,7 @@ export default function Login() {
                 type="password"
                 placeholder="Enter your password"
                 className="border w-full h-10 px-3 text-sm text-gray-800 placeholder-gray-400 
-    rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+    rounded-md focus:outline-none focus:ring-2 focus:from-cyan-500"
                 value={data.password}
                 onChange={handleChange}
               />
@@ -117,6 +125,7 @@ export default function Login() {
               </div>
             </div>
           </form>
+          <Dialog message={message} type={typeRef.current} ref={dialog} />
         </div>
       </div>
     </>

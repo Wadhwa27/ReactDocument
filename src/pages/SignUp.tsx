@@ -7,7 +7,7 @@ export default function SignUp() {
   const [data, setData] = useState<userData>({ email: "", password: "" });
   const [message, setMessage] = useState<string>("");
   const dialog = useRef<DialogHandle>(null);
-
+  const typeRef = useRef<"error" | "success">("error");
   // const navigate = useNavigate();
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const id = event.target.id;
@@ -29,28 +29,35 @@ export default function SignUp() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (data.password == "" || data.email == "") {
+      typeRef.current = "error";
       setMessage("Please fill the form ");
       dialog.current?.open();
       return;
     }
     if (data.password.trim().length < 6) {
+      typeRef.current = "error";
       setMessage("Please enter a valid password of minimum length 6");
       dialog.current?.open();
       return;
     }
     if (!data.email.includes("@")) {
+      typeRef.current = "error";
       setMessage("Please enter a valid email");
       dialog.current?.open();
       return;
     }
     if (isNewUserExist(data.email)) {
+      typeRef.current = "error";
       setMessage("User already exists");
       dialog.current?.open();
       return;
     }
     addNewUser(data);
     resetData();
+    typeRef.current = "success";
     setMessage("User created. Click on Login");
+    dialog.current?.open();
+    console.log("type.ref :", typeRef.current);
   }
 
   return (
@@ -89,7 +96,7 @@ export default function SignUp() {
               type="email"
               placeholder="Enter your email"
               className="border w-full h-10 px-3 text-sm text-gray-800 placeholder-gray-400 
-    rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+    rounded-md focus:outline-none focus:ring-2 focus:from-cyan-500"
               value={data.email}
               onChange={handleChange}
             />
@@ -108,7 +115,7 @@ export default function SignUp() {
               type="password"
               placeholder="Enter your password"
               className="border w-full h-10 px-3 text-sm text-gray-800 placeholder-gray-400 
-    rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+    rounded-md focus:outline-none focus:ring-2 focus:from-cyan-500"
               value={data.password}
               onChange={handleChange}
             />
@@ -125,11 +132,11 @@ export default function SignUp() {
                 Register
               </button>
 
-              {message && (
+              {/* {message && (
                 <p className="text-sm text-white text-center sm:text-left">
                   {message}
                 </p>
-              )}
+              )} */}
 
               <Link
                 to="/login"
@@ -140,7 +147,7 @@ export default function SignUp() {
             </div>
           </div>
         </form>
-        <Dialog message={message} ref={dialog} />
+        <Dialog message={message} type={typeRef.current} ref={dialog} />
       </div>
     </div>
   );
