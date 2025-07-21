@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getActiveUser } from "../LocalStorage";
+import { getActiveUser } from "../util/LocalStorage";
 export default function PrivateRoute() {
   const ActiveUser = getActiveUser();
   console.log("Active User", ActiveUser);

@@ -41,16 +41,12 @@ const Dialog = forwardRef<DialogHandle, DialogProp>(
           rounded-2xl bg-[#2c3e50]/80 
           shadow-2xl backdrop-blur-md border border-white/10 text-white"
         >
-          {/* Error Icon */}
           <div className=" text-8xl md:text-6xl mb-4">{icon}</div>
 
-          {/* Title */}
           <h2 className="text-2xl md:text-5xl font-semibold">{title}</h2>
 
-          {/* Message */}
           <p className="text-base md:text-lg font-medium">{message}</p>
 
-          {/* Close Button */}
           <form method="dialog" className="mt-6">
             <button
               type="submit"

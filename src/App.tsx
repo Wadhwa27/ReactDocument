@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
+import Home from "./components/Home";
 import SignUp from "./pages/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 
 // import { getActiveUser } from "./LocalStorage";
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage";
 function App() {
   return (
     <>

@@ -5,7 +5,7 @@ import {
   deleteActiveUser,
   getActiveUser,
   type userData,
-} from "../LocalStorage";
+} from "../util/LocalStorage";
 export default function Home() {
   const [activeUser, setActiveUser] = useState<userData>();
   const navigate = useNavigate();
@@ -22,10 +22,12 @@ export default function Home() {
 
   return (
     <>
-      <div>
-        <h1 className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-800 via-purple-900 to-indigo-900 text-white">
-          Welcome {activeUser?.email}
-        </h1>
+      <div
+        className="relative min-h-screen flex items-center justify-center 
+      bg-gradient-to-br from-[#a372e8] via-[#65bad6] to-[#3a0e6e] 
+      bg-[length:200%_200%] animate-gradient-bg text-white overflow-hidden px-4"
+      >
+        <h1>Welcome {activeUser?.email}</h1>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>

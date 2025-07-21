@@ -1,0 +1,9 @@
+[
+    {
+        "id" : "1",
+        "title" : "Installation",
+        "content" : "If you want to start a new React app, you can create a React app using a recommended framework.",
+        "code" : "npx create-next-app@latest",
+        "conclusion" : "You can also make react project using vite bundler"
+    }
+]
