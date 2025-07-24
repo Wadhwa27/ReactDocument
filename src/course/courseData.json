@@ -1,9 +1,24 @@
+
 [
-    {
-        "id" : "1",
-        "title" : "Installation",
-        "content" : "If you want to start a new React app, you can create a React app using a recommended framework.",
-        "code" : "npx create-next-app@latest",
-        "conclusion" : "You can also make react project using vite bundler"
-    }
+  {
+    "id": "intro-to-react",
+    "title": "Introduction to React",
+    "description": "React is a library for building user interfaces.",
+    "code": "const element = <h1>Hello React</h1>;",
+    "conclusion": "JSX lets you write HTML in JS."
+  },
+  {
+    "id": "components",
+    "title": "Understanding Components",
+    "description": "Components let you split UI into reusable pieces.",
+    "code": "function Welcome() { return <h1>Hi!</h1>; }",
+    "conclusion": "Components simplify UI reuse."
+  },
+  {
+    "id": "props-vs-state",
+    "title": "Props vs State",
+    "description": "Props are passed from parent; state is local.",
+    "code": "const [count, setCount] = useState(0);",
+    "conclusion": "Use props for static data, state for dynamic."
+  }
 ]
