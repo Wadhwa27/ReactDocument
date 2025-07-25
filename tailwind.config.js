@@ -6,7 +6,7 @@ export default {
     extend: {
       animation: {
         "spin-slow": "spin 8s linear infinite",
-        "gradient-bg": "gradientMove 10s ease infinite",
+        "gradient-bg": "gradientMove 20s ease infinite",
         blob: "blob 20s infinite",
       },
       keyframes: {

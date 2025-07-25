@@ -8,7 +8,7 @@ import {
   getActiveUser,
   type userData,
 } from "../util/LocalStorage";
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 export default function Home() {
   // const [activeUser, setActiveUser] = useState<userData>();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function Home() {
       <div className="flex flex-col h-screen">
         <Navbar logout={handleLogOut} />
         <div className="flex flex-1 overflow-hidden">
-          <Sidebar />
+          <Sidebar logout={handleLogOut} />
           <div className="flex-1 overflow-y-auto bg-gradient-to-b from-white to-blue-100">
             <MainContent />
           </div>

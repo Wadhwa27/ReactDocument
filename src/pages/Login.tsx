@@ -2,12 +2,16 @@ import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUser, updateActiveUser } from "../util/LocalStorage";
 import Dialog, { type DialogHandle } from "../components/Dialog";
+import { useDispatch } from "react-redux";
+import { setActiveUser } from "../features/Slice/userSlice";
 
 interface LoginModel {
   email: string;
   password: string;
 }
+
 export default function Login() {
+  const dispatch = useDispatch();
   const [data, setData] = useState<LoginModel>({
     email: "",
     password: "",
@@ -40,6 +44,7 @@ export default function Login() {
       return;
     }
     updateActiveUser(data);
+    dispatch(setActiveUser(user));
     navigate("/home");
   }
 

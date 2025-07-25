@@ -1,24 +1,114 @@
-
 [
   {
     "id": "intro-to-react",
     "title": "Introduction to React",
-    "description": "React is a library for building user interfaces.",
-    "code": "const element = <h1>Hello React</h1>;",
-    "conclusion": "JSX lets you write HTML in JS."
+    "description": "React is a JavaScript library for building fast, interactive user interfaces.",
+    "code": "const element = <h1>Hello, world!</h1>;",
+    "conclusion": "JSX lets you write HTML elements inside JavaScript."
   },
   {
     "id": "components",
     "title": "Understanding Components",
-    "description": "Components let you split UI into reusable pieces.",
-    "code": "function Welcome() { return <h1>Hi!</h1>; }",
-    "conclusion": "Components simplify UI reuse."
+    "description": "Components let you break UI into independent, reusable pieces.",
+    "code": "function Welcome() { return <h1>Welcome!</h1>; }",
+    "conclusion": "Components make your UI more manageable and scalable."
   },
   {
     "id": "props-vs-state",
     "title": "Props vs State",
-    "description": "Props are passed from parent; state is local.",
+    "description": "Props are read-only and passed by parent. State is mutable and local.",
     "code": "const [count, setCount] = useState(0);",
-    "conclusion": "Use props for static data, state for dynamic."
+    "conclusion": "Use props for config, state for interactive behavior."
+  },
+  {
+    "id": "event-handling",
+    "title": "Handling Events",
+    "description": "React handles events using camelCase syntax and functions.",
+    "code": "<button onClick={handleClick}>Click Me</button>",
+    "conclusion": "Use functions to handle user interactions in components."
+  },
+  {
+    "id": "conditional-rendering",
+    "title": "Conditional Rendering",
+    "description": "You can render components conditionally using logical operators or ternary syntax.",
+    "code": "isLoggedIn ? <Dashboard /> : <Login />",
+    "conclusion": "Conditional rendering improves user experience based on logic."
+  },
+  {
+    "id": "list-and-keys",
+    "title": "Lists and Keys",
+    "description": "Use `.map()` to render lists. Keys help React track changes.",
+    "code": "items.map(item => <li key={item.id}>{item.name}</li>)",
+    "conclusion": "Always provide a unique key when rendering lists."
+  },
+  {
+    "id": "use-effect",
+    "title": "useEffect Hook",
+    "description": "`useEffect` lets you run side effects in function components.",
+    "code": "useEffect(() => { fetchData(); }, []);",
+    "conclusion": "Great for data fetching, subscriptions, and DOM updates."
+  },
+  {
+    "id": "forms",
+    "title": "Handling Forms",
+    "description": "React uses controlled components to handle form input.",
+    "code": "<input value={name} onChange={e => setName(e.target.value)} />",
+    "conclusion": "Control the form data via component state."
+  },
+  {
+    "id": "use-context",
+    "title": "useContext Hook",
+    "description": "It lets you share state globally without prop drilling.",
+    "code": "const value = useContext(MyContext);",
+    "conclusion": "Useful for themes, auth, and global settings."
+  },
+  {
+    "id": "custom-hooks",
+    "title": "Creating Custom Hooks",
+    "description": "Custom hooks let you reuse logic across components.",
+    "code": "function useCounter() { const [count, setCount] = useState(0); return { count, increment }; }",
+    "conclusion": "Custom hooks keep code DRY and composable."
+  },
+  {
+    "id": "use-memo-callback",
+    "title": "useMemo & useCallback",
+    "description": "`useMemo` caches computed values; `useCallback` caches functions.",
+    "code": "const memoizedValue = useMemo(() => compute(value), [value]);",
+    "conclusion": "Useful for optimizing performance in re-renders."
+  },
+  {
+    "id": "routing",
+    "title": "React Router Basics",
+    "description": "Use React Router for navigation between components.",
+    "code": "<Route path='/about' element={<About />} />",
+    "conclusion": "Enable single-page application routing with ease."
+  },
+  {
+    "id": "lazy-loading",
+    "title": "Code Splitting & Lazy Loading",
+    "description": "React supports lazy loading using `React.lazy()` and `Suspense`.",
+    "code": "const About = React.lazy(() => import('./About'));",
+    "conclusion": "Improves performance by loading code on demand."
+  },
+  {
+    "id": "error-boundaries",
+    "title": "Error Boundaries",
+    "description": "Catch JavaScript errors anywhere in child component tree.",
+    "code": "class ErrorBoundary extends React.Component { componentDidCatch() {} }",
+    "conclusion": "Use for graceful error handling in production."
+  },
+  {
+    "id": "testing",
+    "title": "Testing React Components",
+    "description": "Use libraries like Jest and React Testing Library.",
+    "code": "render(<Component />); expect(screen.getByText('Hello')).toBeInTheDocument();",
+    "conclusion": "Testing ensures your UI behaves as expected."
+  },
+  {
+    "id": "performance",
+    "title": "Performance Optimization",
+    "description": "Use memoization, lazy loading, and avoid unnecessary re-renders.",
+    "code": "export default React.memo(MyComponent);",
+    "conclusion": "Optimize your app to enhance speed and responsiveness."
   }
 ]
