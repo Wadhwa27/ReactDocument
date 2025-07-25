@@ -130,12 +130,6 @@ export default function SignUp() {
                 Register
               </button>
 
-              {/* {message && (
-                <p className="text-sm text-white text-center sm:text-left">
-                  {message}
-                </p>
-              )} */}
-
               <Link
                 to="/login"
                 className="text-sm text-white hover:text-cyan-400 underline transition text-center sm:text-left"

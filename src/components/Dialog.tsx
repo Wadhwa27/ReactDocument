@@ -14,16 +14,12 @@ const Dialog = forwardRef<DialogHandle, DialogProp>(
     useImperativeHandle(ref, () => ({
       open: () => {
         dialogRef.current?.showModal();
-        // document.body.classList.add("dialog-open");
       },
       close: () => {
         dialogRef.current?.close();
-        // document.body.classList.remove("dialog-open");
       },
     }));
-    function handleClose() {
-      // document.body.classList.remove("dialog-open");
-    }
+    function handleClose() {}
     const isError = type === "error";
     const icon = isError ? "⚠️" : "✅";
     const title = isError ? "Error" : "Success";
@@ -69,6 +65,3 @@ const Dialog = forwardRef<DialogHandle, DialogProp>(
   }
 );
 export default Dialog;
-
-// 1. change in the url and so that no onelogin
-// if user clicked then login page come
